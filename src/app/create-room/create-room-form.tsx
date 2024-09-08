@@ -21,7 +21,7 @@ const formSchema = z.object({
     name: z.string().min(1).max(50),
     description: z.string().min(1).max(250),
     githubRepo: z.string().min(1).max(50),
-    language: z.string().min(1).max(50),
+    tags: z.string().min(1).max(50),
 })
 
 
@@ -33,7 +33,7 @@ export function CreateRoomForm() {
             name: "",
             description: "",
             githubRepo: "",
-            language: "",
+            tags: "",
         },
     })
 
@@ -59,7 +59,7 @@ export function CreateRoomForm() {
                         <FormItem>
                             <FormLabel>Usuario</FormLabel>
                             <FormControl>
-                                <Input {...field} />
+                                <Input placeholder="Estoy trabajando en un proyeto que" {...field} />
                             </FormControl>
                             <FormDescription>
                                 Este será tu nombre publico
@@ -102,15 +102,16 @@ export function CreateRoomForm() {
                 />
                 <FormField
                     control={form.control}
-                    name="language"
+                    name="tags"
                     render={({ field }) => (
                         <FormItem>
                             <FormLabel>Lenguaje de Programación</FormLabel>
                             <FormControl>
-                                <Input {...field} />
+                                <Input placeholder="JavaScript, Nextjs, ..." {...field} />
                             </FormControl>
                             <FormDescription>
-                                Especifica el lenguaje de programación que estas usando
+                                Especifica los lenguajes de programación que estas usando 
+                                <h5 className="text-sm font-bold">Separa con "," si son varios lenguajes</h5>
                             </FormDescription>
                             <FormMessage />
                         </FormItem>
