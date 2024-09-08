@@ -2,8 +2,9 @@ import { getRoom } from "@/data-access/rooms";
 import { GithubIcon } from "lucide-react";
 import Link from "next/link";
 import { Badge } from "@/components/ui/badge"
-import TagsList, { splitTags } from "@/components/tags-list";
+import TagsList from "@/components/tags-list";
 import { DevTogetherVideo } from "./video-player";
+import { splitTags } from "@/lib/utils";
 
 
 function isValidUUID(uuid: any) {

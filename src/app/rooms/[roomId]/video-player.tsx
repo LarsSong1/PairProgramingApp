@@ -9,15 +9,17 @@ import {
     Call,
     StreamTheme,
     SpeakerLayout,
-    CallControls
+    CallControls,
+    CallParticipantsList
 } from '@stream-io/video-react-sdk';
 import { useSession } from 'next-auth/react';
 import { useEffect, useState } from 'react';
 import { generateTokenAction } from './actions';
+import { useRouter } from 'next/navigation';
 
 const apiKey = process.env.NEXT_PUBLIC_GET_STREAM_API_KEY!;
 
-const token ='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiN2FlMjgwNjgtMzIxNS00ZjY1LWIyM2ItMmQ1NGYxNTAzNDRkIn0.ddW6ouOzF5KuJUVrcQnLb6NxSzukI2-406aR3qXn_9o';
+const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiN2FlMjgwNjgtMzIxNS00ZjY1LWIyM2ItMmQ1NGYxNTAzNDRkIn0.ddW6ouOzF5KuJUVrcQnLb6NxSzukI2-406aR3qXn_9o';
 
 
 export function DevTogetherVideo({ room }: { room: Room }) {
@@ -25,6 +27,7 @@ export function DevTogetherVideo({ room }: { room: Room }) {
     console.log(session.data?.user.id)
     const [client, setClient] = useState<StreamVideoClient | null>(null);
     const [call, setCall] = useState<Call | null>(null);
+    const router = useRouter()
 
     useEffect(() => {
         if (!room) return;
@@ -35,8 +38,11 @@ export function DevTogetherVideo({ room }: { room: Room }) {
             apiKey,
             user: {
                 id: userId,
+                name: session.data.user.name ?? undefined,
+                image: session.data.user.image ?? undefined,
+
             },
-            tokenProvider: ()=> generateTokenAction(),
+            tokenProvider: () => generateTokenAction(),
         });
         setClient(client);
         const call = client.call('default', room.id);
@@ -45,8 +51,13 @@ export function DevTogetherVideo({ room }: { room: Room }) {
 
 
         return () => {
-            call.leave()
-            client.disconnectUser()
+            call
+                .leave()
+                .then(()=>{
+                    client.disconnectUser()
+                })
+                .catch((err) => console.error(err));
+          
         }
 
     }, [session, room])
@@ -55,12 +66,14 @@ export function DevTogetherVideo({ room }: { room: Room }) {
     return (
         client &&
         call && (
-            <StreamVideo  client={client}>
+            <StreamVideo client={client}>
                 <StreamTheme>
-                    <StreamCall  call={call}>
-                        <SpeakerLayout/>
-                        <CallControls/>
-
+                    <StreamCall call={call}>
+                        <SpeakerLayout />
+                        <CallControls onLeave={() => {
+                            router.push('/')
+                        }} />
+                        <CallParticipantsList onClose={() => undefined} />
                     </StreamCall>
                 </StreamTheme>
             </StreamVideo>

@@ -24,7 +24,6 @@ import Link from 'next/link';
 
 function AccountDropdown() {
     const session = useSession();
-    const isLoggedIn = !!session.data;
     return (
         <DropdownMenu>
             <DropdownMenuTrigger asChild>
@@ -42,21 +41,17 @@ function AccountDropdown() {
             </DropdownMenuTrigger>
             <DropdownMenuContent>
                 <DropdownMenuSeparator />
-                {
-                    isLoggedIn ? (
-                        <DropdownMenuItem onClick={() => signOut()}>
-                            <LogOutIcon />
-                            Salir
-                        </DropdownMenuItem>
 
-                    ) : (
-                        <DropdownMenuItem onClick={() => signIn("google")}>
-                            <LogInIcon />
-                            Entrar
-                        </DropdownMenuItem>
+                <DropdownMenuItem onClick={() => signOut({
+                    callbackUrl: '/',
 
-                    )
-                }
+                })}>
+                    <LogOutIcon />
+                    Salir
+                </DropdownMenuItem>
+
+
+
 
             </DropdownMenuContent>
         </DropdownMenu>
@@ -66,6 +61,7 @@ function AccountDropdown() {
 
 
 export function Header() {
+    const session = useSession();
     return (
         <header className='py-2 dark:bg-gray-900'>
             <div className='flex container mx-auto justify-between items-center '>
@@ -81,7 +77,17 @@ export function Header() {
                     </Link>
                 </div>
                 <div className='flex items-center gap-4'>
-                    <AccountDropdown />
+
+                    {session.data && <AccountDropdown />}
+
+                    {!session.data && (
+                        <Button onClick={() => signIn('google')} variant='link'>
+                            <LogInIcon />
+                            Iniciar sesión
+                        </Button>
+                    )
+
+                    }
                     <ModeToggle />
                 </div>
             </div>
