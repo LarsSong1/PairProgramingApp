@@ -36,6 +36,11 @@ export default async function Home({searchParams}:{searchParams : {search: strin
         })}
       </div>
 
+
+      {rooms.length === 0 && (
+        <div>No hay Salas</div>
+      )}
+
     </main>
   );
 }

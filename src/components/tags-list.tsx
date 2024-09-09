@@ -14,15 +14,13 @@ export default function TagsList({ tags }: { tags: string[] }) {
     return (
         <div className="flex gap-2 flex-wrap">
             {
-                tags.map((tag, id) => (
+                tags.map((tag) => (
                     <button
                         className={cn(badgeVariants())}
-                        key={id}
+                        key={tag}
                         onClick={() => {
-                            router.push(`/?search=${tag}`)
+                            router.push(`/browse?search=${tag}`)
                         }}>
-
-
                         {tag}
 
                     </button>

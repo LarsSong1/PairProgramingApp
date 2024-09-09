@@ -17,6 +17,7 @@ import { Input } from "@/components/ui/input"
 import { editRoomActions } from "./actions";
 import { useParams, useRouter } from "next/navigation";
 import { Room } from "@/db/schema";
+import { toast } from "@/hooks/use-toast";
 
 const formSchema = z.object({
     name: z.string().min(1).max(50),
@@ -51,6 +52,11 @@ export function EditRoomForm({room}: {room: Room}) {
             ...values
         });
         // router.push("/")
+        toast({
+            title: "Sala editada",
+            description: "La sala ha sido editada exitosamente",
+            
+        })
         
     }
 

@@ -47,9 +47,9 @@ export default function SearchBar() {
         // Invocar acciones del servidor para guardar datos en la base de datos
         // await createRoomActions(values);
         if (values.search) {
-            router.push(`/?search=${values.search}`)
+            router.push(`/browse?search=${values.search}`)
         } else {
-            router.push("/")
+            router.push("/browse")
 
         }
 
