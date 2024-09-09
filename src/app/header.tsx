@@ -62,8 +62,9 @@ function AccountDropdown() {
 
 export function Header() {
     const session = useSession();
+    const isLoggedIn = !!session.data
     return (
-        <header className='py-2 dark:bg-gray-900'>
+        <header className='py-2 dark:bg-gray-900 '>
             <div className='flex container mx-auto justify-between items-center '>
                 <div>
                     <Link href="/" className='flex items-center gap-2 text-sm'>
@@ -75,12 +76,31 @@ export function Header() {
                         />
                         DevFinder
                     </Link>
+
                 </div>
+                <nav className='flex gap-4'>
+                    {isLoggedIn && (
+
+                        <>
+
+                            <Link
+                                className='hover:underline mx-auto'
+                                href={'/browse'}>
+                                Buscar
+                            </Link>
+                            <Link
+                                className='hover:underline mx-auto'
+                                href={'/your-rooms'}>
+                                Mis Salas
+                            </Link>
+                        </>
+                    )}
+                </nav>
                 <div className='flex items-center gap-4'>
 
-                    {session.data && <AccountDropdown />}
+                    {isLoggedIn && <AccountDropdown />}
 
-                    {!session.data && (
+                    {!isLoggedIn && (
                         <Button onClick={() => signIn('google')} variant='link'>
                             <LogInIcon />
                             Iniciar sesión

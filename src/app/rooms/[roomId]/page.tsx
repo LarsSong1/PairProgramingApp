@@ -1,10 +1,10 @@
 import { getRoom } from "@/data-access/rooms";
 import { GithubIcon } from "lucide-react";
 import Link from "next/link";
-import { Badge } from "@/components/ui/badge"
 import TagsList from "@/components/tags-list";
 import { DevTogetherVideo } from "./video-player";
 import { splitTags } from "@/lib/utils";
+import { unstable_noStore } from "next/cache";
 
 
 function isValidUUID(uuid: any) {
@@ -13,6 +13,7 @@ function isValidUUID(uuid: any) {
 }
 
 export default async function Roompage(props: { params: { roomId: string } }) {
+    unstable_noStore();
     const roomId = props.params.roomId;
 
     // Verificar si el roomId es un UUID válido antes de hacer la consulta
