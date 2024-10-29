@@ -9,8 +9,8 @@ import { Toaster } from "@/components/ui/toaster"
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "We Deving",
-  description: "App para programar en conjunto",
+  title: "DevSpot",
+  description: "Programa junto a otros expertos en tu tecnologia favorita",
 };
 
 export default function RootLayout({
@@ -25,7 +25,7 @@ export default function RootLayout({
           <NextTopLoader />
           <Toaster/>
           <Header />
-          <div className="container mx-auto">{children}</div>
+          <div className="h-screen dark:bg-black bg-white">{children}</div>
         </Providers>
       </body>
     </html>

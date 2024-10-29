@@ -24,9 +24,12 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { deleteAccountAction } from "./actions";
 import { Router, useRouter } from "next/router";
+import darkLogo from "../img/darkDev.svg"
+import normalLogo from "../img/whiteDev.svg"
+import { useTheme } from "next-themes";
 
 
 function AccountDropdown() {
@@ -48,9 +51,9 @@ function AccountDropdown() {
             <AlertDialogCancel>Cancel</AlertDialogCancel>
             <AlertDialogAction
               onClick={async () => {
-                
+
                 await deleteAccountAction()
-                signOut({callbackUrl: '/'})
+                signOut({ callbackUrl: '/' })
               }}
             >
               Si Borrar mi cuenta
@@ -98,20 +101,23 @@ export function Header() {
   const session = useSession();
   const isLoggedIn = !!session.data;
 
+
+  const { theme } = useTheme()
+
+  const logoSrc = theme === "dark" ? darkLogo : normalLogo;
+
   return (
-    <header className="bg-gray-100 py-2 dark:bg-gray-900 z-10 relative">
+    <header className="bg-white py-2 absolute dark:bg-black z-10 left-0 top-0 w-full h-20 flex items-center justify-center">
       <div className="container mx-auto flex justify-between items-center">
         <Link
           href="/"
           className="flex gap-2 items-center text-xl hover:underline"
         >
           <Image
-            src="/icon.png"
-            width="60"
-            height="60"
+            src={logoSrc}
+            className="w-24"
             alt="the application icon of a magnifying glass"
           />
-          DevFinder
         </Link>
 
         <nav className="flex gap-8">
