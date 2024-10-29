@@ -65,7 +65,7 @@ export function CreateRoomForm() {
                     name="name"
                     render={({ field }) => (
                         <FormItem>
-                            <FormLabel>Usuario</FormLabel>
+                            <FormLabel>Nombre del Proyecto</FormLabel>
                             <FormControl>
                                 <Input placeholder="Estoy trabajando en un proyeto que" {...field} />
                             </FormControl>

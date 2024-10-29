@@ -17,7 +17,10 @@ export default async function Home({searchParams}:{searchParams : {search: strin
   return (
     <main className="min-h-screen p-24">
       <div className='flex justify-between items-center w-full mb-8'>
-        <h1 className='text-4xl'>Busca salas Dev</h1>
+        <div>
+          <h1 className='text-4xl font-bold'>Busca salas</h1>
+          <p className="font-light text-sm">De tu interes</p>
+        </div>
         <Button asChild>
           <Link href={'/create-room'}>
             Crear Sala
@@ -26,11 +29,10 @@ export default async function Home({searchParams}:{searchParams : {search: strin
       </div>
 
       <div className="mb-8">
-
         <SearchBar />
       </div>
 
-      <div className='grid grid-cols-3 gap-4'>
+      <div className='grid lg:grid-cols-3  gap-4'>
         {rooms.map(room => {
           return <RoomCard key={room.id} room={room} />
         })}

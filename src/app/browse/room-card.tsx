@@ -18,26 +18,26 @@ import { splitTags } from '@/lib/utils';
 
 export function RoomCard({ room }: { room: Room }) {
   return (
-    <Card>
-      <CardHeader>
+    <Card className="bg-white">
+      <CardHeader className="text-black">
         <CardTitle>{room.name}</CardTitle>
-        <CardDescription>{room.description}</CardDescription>
+        <CardDescription className="text-black font-light">{room.description}</CardDescription>
       </CardHeader>
       <CardContent className='flex flex-col gap-4'>
         {
           room.githubRepo && (
-            <Link href={room.githubRepo} className='flex items-center gap-2'
+            <Link href={room.githubRepo} className='flex items-center gap-2 text-black'
               target='_blank'
             >
-              <GithubIcon />
+              <GithubIcon className="text-black"/>
               Repositorio Github
             </Link>
           )
         }
         <TagsList tags={splitTags(room.tags)} />
       </CardContent>
-      <CardFooter>
-        <Button asChild>
+      <CardFooter className="flex justify-end">
+        <Button className="dark:bg-green-500 dark:hover:bg-green-700 dark:hover:text-white border-black border-2 border-l-0 border-t-0 bg-orange-500 text-black hover:bg-orange-600 hover:text-white" asChild>
           <Link href={`/rooms/${room.id}`}>
             Unirte
           </Link>

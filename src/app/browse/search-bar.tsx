@@ -56,7 +56,7 @@ export default function SearchBar() {
     }
 
     return (
-        <Form {...form}>
+        <Form  {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="flex items-center gap-4">
                 <FormField
                     control={form.control}
@@ -65,7 +65,7 @@ export default function SearchBar() {
                         <FormItem>
                             <FormControl>
                                 <Input
-                                    className="w-80"
+                                    className="w-80 bg-white dark:text-black border-black"
                                     placeholder="Javascript, Node" {...field} />
                             </FormControl>
 

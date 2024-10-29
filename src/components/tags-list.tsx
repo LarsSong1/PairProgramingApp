@@ -16,7 +16,7 @@ export default function TagsList({ tags }: { tags: string[] }) {
             {
                 tags.map((tag) => (
                     <button
-                        className={cn(badgeVariants())}
+                        className={cn(badgeVariants(), "bg-black text-white dark:hover:bg-green-950 ")}
                         key={tag}
                         onClick={() => {
                             router.push(`/browse?search=${tag}`)
