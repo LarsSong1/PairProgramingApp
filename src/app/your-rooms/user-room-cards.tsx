@@ -32,18 +32,18 @@ import { Pencil1Icon } from '@radix-ui/react-icons';
 
 export function UserRoomCard({ room }: { room: Room }) {
   return (
-    <Card>
-      <CardHeader className='relative'>
-        <Button size={'icon'} className='right-4 absolute'>
+    <Card className='dark:bg-white'>
+      <CardHeader className='relative dark:text-black'>
+        <Button size={'icon'} className='right-4 absolute bg-orange-500 hover:bg-orange-600 dark:bg-green-500'>
           <Link href={`/edit-room/${room.id}`}>
 
-            <Pencil1Icon />
+            <Pencil1Icon className='text-black hover:text-white dark:text-black'/>
           </Link>
         </Button>
         <CardTitle>{room.name}</CardTitle>
-        <CardDescription>{room.description}</CardDescription>
+        <CardDescription className='font-light text-black'>{room.description}</CardDescription>
       </CardHeader>
-      <CardContent className='flex flex-col gap-4'>
+      <CardContent className='flex flex-col gap-4 text-black'>
         {
           room.githubRepo && (
             <Link href={room.githubRepo} className='flex items-center gap-2'
@@ -56,8 +56,8 @@ export function UserRoomCard({ room }: { room: Room }) {
         }
         <TagsList tags={splitTags(room.tags)} />
       </CardContent>
-      <CardFooter className='flex gap-2'>
-        <Button asChild>
+      <CardFooter className='flex gap-2 justify-end'>
+        <Button className='bg-black dark:bg-green-500 text-white dark:text-black dark:hover:bg-green-600' asChild>
           <Link href={`/rooms/${room.id}`}>
             Unirte
           </Link>

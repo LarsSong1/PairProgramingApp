@@ -18,7 +18,7 @@ export default function LandingPage() {
           <div className="mt-10 flex items-center justify-center gap-x-6">
             <Link
               href="/browse"
-              className="rounded-md bg-black px-4 py-2.5 text-sm font-semibold text-white hover:bg-orange-600 hover:text-white hover:border-b-2 hover:border-r-2 hover:border-black shadow-md"
+              className="rounded-md dark:bg-white dark:text-black dark:hover:bg-green-600 bg-black px-4 py-2.5 text-sm font-semibold text-white hover:bg-orange-600 hover:text-white hover:border-b-2 hover:border-r-2 hover:border-black shadow-md"
             >
               Registrate
             </Link>

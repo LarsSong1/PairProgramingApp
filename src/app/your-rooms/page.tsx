@@ -16,7 +16,7 @@ export default async function YourRoomsPage() {
     return (
         <main className="min-h-screen p-24">
             <div className='flex justify-between items-center w-full mb-8'>
-                <h1 className='text-4xl'>Tus salas</h1>
+                <h1 className='text-4xl font-bold'>Tus salas</h1>
                 <Button asChild>
                     <Link href={'/create-room'}>
                         Crear Sala
@@ -26,7 +26,7 @@ export default async function YourRoomsPage() {
 
 
 
-            <div className='grid grid-cols-3 gap-4'>
+            <div className='grid lg:grid-cols-3 gap-4'>
                 {rooms.map(room => {
                     return <UserRoomCard key={room.id} room={room} />
                 })}
