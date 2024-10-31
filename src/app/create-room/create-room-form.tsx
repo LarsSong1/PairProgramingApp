@@ -119,7 +119,7 @@ export function CreateRoomForm() {
                             </FormControl>
                             <FormDescription>
                                 Especifica los lenguajes de programación que estas usando 
-                                <h5 className="text-sm font-bold">Separa con "," si son varios lenguajes</h5>
+                                <h5 className="text-sm font-bold">Separa con &quot;,&quot si son varios lenguajes</h5>
                             </FormDescription>
                             <FormMessage />
                         </FormItem>
