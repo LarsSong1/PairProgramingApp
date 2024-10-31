@@ -73,7 +73,7 @@ export default function SearchBar() {
                         </FormItem>
                     )}
                 />
-                <Button type="submit">
+                <Button className="bg-black hover:bg-orange-600 dark:text-black dark:bg-green-500" type="submit">
                     <SearchIcon size={15} />
                     Buscar
                 </Button>

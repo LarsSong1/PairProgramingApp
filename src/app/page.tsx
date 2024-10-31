@@ -3,10 +3,10 @@ import Link from "next/link";
 
 export default function LandingPage() {
   return (
-    <div className="relative min-h-screen lg:px-8 flex items-center justify-center">
+    <div className="relative min-h-screen lg:px-8 flex items-center justify-center ">
       <div className="mx-auto max-w-2xl h-full flex justify-center items-center py-12">
         <div className="text-center flex flex-col items-center justify-center w-full">
-          <h1 className="font-bold tracking-tight text-gray-900 dark:text-white lg:w-[800px] space-y-4">
+          <h1 className="font-bold tracking-tight text-black dark:text-white lg:w-[800px] space-y-4">
             <span className="lg:text-6xl text-4xl text-start">Conoce a expertos</span>
             <hr className="h-0 w-0"/>
             <span className="text-xl text-end text-orange-600 dark:text-green-500 w-full">Programando en tu idioma</span>

@@ -29,14 +29,14 @@ export default async function Roompage(props: { params: { roomId: string } }) {
 
 
     return (
-        <div className="grid lg:grid-cols-4 min-h-screen mt-20">
-            <div className="col-span-3 p-4 pr-2">
-                <div className="rounded-lg border bg-card text-card-foreground shadow-sm p-4">
+        <div className="grid lg:grid-cols-4 dark:bg-black bg-white">
+            <div className="col-span-3 p-4 pr-2 mt-20">
+                <div className="rounded-lg border dark:bg-black bg-white text-card-foreground shadow-sm p-4">
                     <DevTogetherVideo room={room}/>
                 </div>
             </div>
-            <div className="col-span-1 p-4 pl-2">
-                <div className="rounded-lg border bg-card text-card-foreground shadow-sm p-4 flex flex-col gap-4">
+            <div className="col-span-1 p-4 pl-2 mt-20">
+                <div className="rounded-lg border dark:bg-black bg-white text-card-foreground shadow-sm p-4 flex flex-col gap-4">
                     <h1>{room?.name}</h1>
                     {room.githubRepo && (
                         <Link

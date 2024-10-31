@@ -21,7 +21,9 @@ export default async function Home({searchParams}:{searchParams : {search: strin
           <h1 className='text-4xl font-bold'>Busca salas</h1>
           <p className="font-light text-sm">De tu interes</p>
         </div>
-        <Button asChild>
+        <Button
+        className="bg-black hover:bg-orange-600 dark:text-black dark:bg-green-500"
+        asChild>
           <Link href={'/create-room'}>
             Crear Sala
           </Link>

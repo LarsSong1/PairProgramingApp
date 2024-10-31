@@ -37,7 +37,7 @@ export function UserRoomCard({ room }: { room: Room }) {
         <Button size={'icon'} className='right-4 absolute bg-orange-500 hover:bg-orange-600 dark:bg-green-500'>
           <Link href={`/edit-room/${room.id}`}>
 
-            <Pencil1Icon className='text-black hover:text-white dark:text-black'/>
+            <Pencil1Icon className='text-black hover:text-white dark:text-black' />
           </Link>
         </Button>
         <CardTitle>{room.name}</CardTitle>
@@ -75,7 +75,7 @@ export function UserRoomCard({ room }: { room: Room }) {
               Borrar sala
             </Button>
           </AlertDialogTrigger>
-          <AlertDialogContent>
+          <AlertDialogContent className='dark:bg-black bg-white'>
             <AlertDialogHeader>
               <AlertDialogTitle>Estas seguro?</AlertDialogTitle>
               <AlertDialogDescription>
@@ -83,11 +83,13 @@ export function UserRoomCard({ room }: { room: Room }) {
               </AlertDialogDescription>
             </AlertDialogHeader>
             <AlertDialogFooter>
-              <AlertDialogCancel>Cancelar</AlertDialogCancel>
-              <AlertDialogAction onClick={() => {
-                // Borrar sala
-                deleteRoomAction(room.id)
-              }}>
+              <AlertDialogCancel className='bg-white dark:bg-black'>Cancelar</AlertDialogCancel>
+              <AlertDialogAction
+                className='bg-black dark:bg-white'
+                onClick={() => {
+                  // Borrar sala
+                  deleteRoomAction(room.id)
+                }}>
                 Borrar
               </AlertDialogAction>
             </AlertDialogFooter>

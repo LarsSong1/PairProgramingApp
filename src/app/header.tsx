@@ -9,7 +9,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { DeleteIcon, LogInIcon, LogOutIcon } from "lucide-react";
+import { DeleteIcon, LogInIcon, LogOutIcon, TrashIcon } from "lucide-react";
 import Image from "next/image";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import Link from "next/link";
@@ -40,7 +40,7 @@ function AccountDropdown() {
   return (
     <>
       <AlertDialog open={open} onOpenChange={setOpen}>
-        <AlertDialogContent>
+        <AlertDialogContent className="dark:bg-black bg-white">
           <AlertDialogHeader>
             <AlertDialogTitle>Estas seguro?</AlertDialogTitle>
             <AlertDialogDescription>
@@ -48,8 +48,9 @@ function AccountDropdown() {
             </AlertDialogDescription>
           </AlertDialogHeader>
           <AlertDialogFooter>
-            <AlertDialogCancel>Cancel</AlertDialogCancel>
+            <AlertDialogCancel className="dark:bg-black bg-white">Cancel</AlertDialogCancel>
             <AlertDialogAction
+              className="bg-black dark:bg-white"
               onClick={async () => {
 
                 await deleteAccountAction()
@@ -63,33 +64,43 @@ function AccountDropdown() {
       </AlertDialog>
 
       <DropdownMenu>
-        <DropdownMenuTrigger asChild>
+        <DropdownMenuTrigger className="" asChild>
           <Button variant={"link"}>
             <Avatar className="mr-2">
               <AvatarImage src={session.data?.user?.image ?? ""} />
               <AvatarFallback>CN</AvatarFallback>
             </Avatar>
 
-            {session.data?.user?.name}
+            <p className="lg:block hidden">{session.data?.user?.name}</p>
           </Button>
         </DropdownMenuTrigger>
-        <DropdownMenuContent>
+        <DropdownMenuContent className="bg-white dark:bg-black">
           <DropdownMenuItem
+            className="flex justify-between items-center"
             onClick={() =>
               signOut({
                 callbackUrl: "/",
               })
             }
           >
-            <LogOutIcon className="mr-2" /> Salir
+            Salir
+            <LogOutIcon className="mr-2" />
           </DropdownMenuItem>
 
           <DropdownMenuItem
+            className="flex justify-between items-center"
             onClick={() => {
               setOpen(true);
             }}
           >
-            <DeleteIcon className="mr-2" /> Borrar Cuenta
+            Borrar Cuenta
+            <TrashIcon className="mr-2" />
+          </DropdownMenuItem>
+          <DropdownMenuItem
+            className="flex justify-between items-center"
+          >
+            Tema
+            <ModeToggle />
           </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>
@@ -107,7 +118,7 @@ export function Header() {
   const logoSrc = theme === "dark" ? darkLogo : normalLogo;
 
   return (
-    <header className="bg-white py-2 absolute dark:bg-black z-10 left-0 top-0 w-full h-20 flex items-center justify-center">
+    <header className="bg-white py-2 absolute dark:bg-black z-10 left-0 top-0 w-full h-20 flex items-center justify-center mx-auto">
       <div className="container mx-auto flex justify-between items-center">
         <Link
           href="/"
@@ -141,7 +152,9 @@ export function Header() {
               <LogInIcon className="mr-2" /> Entrar
             </Button>
           )}
-          <ModeToggle />
+          <div className="lg:block hidden">
+            <ModeToggle />
+          </div>
         </div>
       </div>
     </header>

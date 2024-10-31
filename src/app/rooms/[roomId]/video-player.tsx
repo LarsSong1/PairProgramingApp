@@ -67,7 +67,7 @@ export function DevTogetherVideo({ room }: { room: Room }) {
         client &&
         call && (
             <StreamVideo client={client}>
-                <StreamTheme>
+                <StreamTheme >
                     <StreamCall call={call}>
                         <SpeakerLayout />
                         <CallControls onLeave={() => {

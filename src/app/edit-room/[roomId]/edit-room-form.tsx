@@ -64,15 +64,18 @@ export function EditRoomForm({room}: {room: Room}) {
     return (
 
         <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4 flex flex-col">
                 <FormField
+                
                     control={form.control}
                     name="name"
                     render={({ field }) => (
                         <FormItem>
                             <FormLabel>Usuario</FormLabel>
                             <FormControl>
-                                <Input placeholder="Estoy trabajando en un proyeto que" {...field} />
+                                <Input 
+                                className="dark:bg-white dark:placeholder:text-black dark:text-black"
+                                placeholder="Estoy trabajando en un proyeto que" {...field} />
                             </FormControl>
                             <FormDescription>
                                 Este será tu nombre publico
@@ -88,7 +91,9 @@ export function EditRoomForm({room}: {room: Room}) {
                         <FormItem>
                             <FormLabel>Descripción</FormLabel>
                             <FormControl>
-                                <Input {...field} />
+                                <Input 
+                                className="dark:bg-white dark:placeholder:text-black dark:text-black"
+                                {...field} />
                             </FormControl>
                             <FormDescription>
                                 Describe tu sala o que estas codeando
@@ -104,7 +109,9 @@ export function EditRoomForm({room}: {room: Room}) {
                         <FormItem>
                             <FormLabel>Repositorio de Github</FormLabel>
                             <FormControl>
-                                <Input {...field} />
+                                <Input
+                                className="dark:bg-white dark:placeholder:text-black dark:text-black"
+                                {...field} />
                             </FormControl>
                             <FormDescription>
                                 Proporciona el link del repositorio de github
@@ -120,17 +127,19 @@ export function EditRoomForm({room}: {room: Room}) {
                         <FormItem>
                             <FormLabel>Lenguaje de Programación</FormLabel>
                             <FormControl>
-                                <Input placeholder="JavaScript, Nextjs, ..." {...field} />
+                                <Input 
+                                className="dark:bg-white dark:placeholder:text-black dark:text-black"
+                                placeholder="JavaScript, Nextjs, ..." {...field} />
                             </FormControl>
                             <FormDescription>
                                 Especifica los lenguajes de programación que estas usando 
-                                <h5 className="text-sm font-bold">Separa con &quot;,&quot si son varios lenguajes</h5>
+                                <h5 className="text-sm font-bold">Separa con &quot;,&quot; si son varios lenguajes</h5>
                             </FormDescription>
                             <FormMessage />
                         </FormItem>
                     )}
                 />
-                <Button type="submit">Submit</Button>
+                <Button type="submit" className="self-end">Editar</Button>
             </form>
         </Form>
 
