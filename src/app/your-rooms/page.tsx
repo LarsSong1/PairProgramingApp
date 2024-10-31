@@ -14,10 +14,13 @@ export default async function YourRoomsPage() {
     const rooms = await getUserRooms();
 
     return (
-        <main className="min-h-screen p-24">
-            <div className='flex justify-between items-center w-full mb-8'>
-                <h1 className='text-4xl font-bold'>Tus salas</h1>
-                <Button asChild>
+        <main className="min-h-screen container mx-auto w-full px-4">
+            <div className='flex justify-between items-center mb-8 flex-wrap'>
+                <div className='mt-20'>
+                    <h1 className='text-4xl font-bold'>Tus salas</h1>
+                    <p className='font-light text-sm'>Puedes administrar tus salas aqui</p>
+                </div>
+                <Button className='bg-black dark:bg-green-500 hover:bg-orange-600 dark:font-bold mt-20' asChild>
                     <Link href={'/create-room'}>
                         Crear Sala
                     </Link>

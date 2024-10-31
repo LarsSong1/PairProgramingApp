@@ -25,7 +25,7 @@ export default function RootLayout({
           <NextTopLoader />
           <Toaster/>
           <Header />
-          <div className="h-screen dark:bg-black bg-white">{children}</div>
+          <div className="h-screen dark:bg-black bg-white ">{children}</div>
         </Providers>
       </body>
     </html>

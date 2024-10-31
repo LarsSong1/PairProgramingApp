@@ -9,7 +9,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { DeleteIcon, LogInIcon, LogOutIcon, TrashIcon } from "lucide-react";
+import { Computer, DeleteIcon, Laptop, LogInIcon, LogOutIcon, TrashIcon } from "lucide-react";
 import Image from "next/image";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import Link from "next/link";
@@ -35,6 +35,12 @@ import { useTheme } from "next-themes";
 function AccountDropdown() {
   const session = useSession();
   const [open, setOpen] = useState(false);
+  const { theme, setTheme } = useTheme()
+
+  const handleThemeChange = (newTheme: 'light' | 'dark' | 'system') => {
+    setTheme(newTheme);
+    setOpen(false);
+  };
 
 
   return (
@@ -76,32 +82,68 @@ function AccountDropdown() {
         </DropdownMenuTrigger>
         <DropdownMenuContent className="bg-white dark:bg-black">
           <DropdownMenuItem
-            className="flex justify-between items-center"
+            className="w-full flex justify-between items-center dark:hover:bg-white dark:hover:text-black"
+          >
+            <Link className="flex justify-between w-full items-center" href='/browse'>
+              <Laptop size={12}/>
+              <p>Salas</p>
+            </Link>
+          </DropdownMenuItem>
+          <DropdownMenuItem
+            className="flex justify-between items-center dark:hover:bg-white dark:hover:text-black"
+          >
+            <Link className="flex justify-between w-full items-center" href='/your-rooms'>
+              <Computer size={12}/>
+              <p>Mis Salas</p>
+            </Link>
+          </DropdownMenuItem>
+    
+
+
+          <DropdownMenuItem
+            className="flex flex-col items-start dark:hover:bg-black"
+          >
+            Tema
+            <div className="self-end w-full ">
+              <DropdownMenuItem
+                className="hover:scale-125"
+                onSelect={() => handleThemeChange("light")}>Claro</DropdownMenuItem>
+              <DropdownMenuItem
+                className="hover:scale-125"
+                onSelect={() => handleThemeChange("dark")}>Oscuro</DropdownMenuItem>
+              <DropdownMenuItem
+                className="hover:scale-125"
+                onSelect={() => handleThemeChange("system")}>Sistema</DropdownMenuItem>
+            </div>
+          </DropdownMenuItem>
+
+
+        
+
+          <DropdownMenuItem
+            className="flex justify-between items-center dark:hover:bg-white dark:hover:text-black"
+            onClick={() => {
+              setOpen(true);
+            }}
+          >
+            <TrashIcon size={12} className="mr-2" />
+            Borrar Cuenta
+          </DropdownMenuItem>
+
+
+          <DropdownMenuItem
+            className="flex justify-between items-center dark:hover:bg-white dark:hover:text-black"
             onClick={() =>
               signOut({
                 callbackUrl: "/",
               })
             }
           >
+            <LogOutIcon size={12} className="mr-2" />
             Salir
-            <LogOutIcon className="mr-2" />
           </DropdownMenuItem>
 
-          <DropdownMenuItem
-            className="flex justify-between items-center"
-            onClick={() => {
-              setOpen(true);
-            }}
-          >
-            Borrar Cuenta
-            <TrashIcon className="mr-2" />
-          </DropdownMenuItem>
-          <DropdownMenuItem
-            className="flex justify-between items-center"
-          >
-            Tema
-            <ModeToggle />
-          </DropdownMenuItem>
+         
         </DropdownMenuContent>
       </DropdownMenu>
     </>
@@ -131,9 +173,9 @@ export function Header() {
           />
         </Link>
 
-        <nav className="flex gap-8">
+        <nav className="hidden text-sm lg:block">
           {isLoggedIn && (
-            <>
+            <div className="flex gap-4">
               <Link className="hover:underline" href="/browse">
                 Salas
               </Link>
@@ -141,7 +183,7 @@ export function Header() {
               <Link className="hover:underline" href="/your-rooms">
                 Mis Salas
               </Link>
-            </>
+            </div>
           )}
         </nav>
 

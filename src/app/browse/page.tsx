@@ -10,24 +10,26 @@ import { unstable_noStore } from 'next/cache';
 
 
 
-export default async function Home({searchParams}:{searchParams : {search: string}}) {
+export default async function Home({ searchParams }: { searchParams: { search: string } }) {
   unstable_noStore();
   const rooms = await getRooms(searchParams.search);
-  
+
   return (
-    <main className="min-h-screen p-24">
-      <div className='flex justify-between items-center w-full mb-8'>
-        <div>
+    <main className="min-h-screen container mx-auto w-full px-4">
+      <div className='flex justify-between items-center w-full mb-8 flex-wrap'>
+        <div className='mt-20'>
           <h1 className='text-4xl font-bold'>Busca salas</h1>
           <p className="font-light text-sm">De tu interes</p>
         </div>
-        <Button
-        className="bg-black hover:bg-orange-600 dark:text-black dark:bg-green-500"
-        asChild>
-          <Link href={'/create-room'}>
-            Crear Sala
-          </Link>
-        </Button>
+        <div className='flex w-full justify-end'>
+          <Button
+            className="bg-black hover:bg-orange-600 dark:text-black dark:bg-green-500 lg:mt-0 mt-4 relative right-0"
+            asChild>
+            <Link href={'/create-room'}>
+              Crear Sala
+            </Link>
+          </Button>
+        </div>
       </div>
 
       <div className="mb-8">
